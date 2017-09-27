@@ -10,14 +10,15 @@
 
     - [Ruta de Instalación MySQL Windows](#id5)
 
+    - [Comprobación del Servicio de MySQL en Windows](#id6)
 
-- [Creación de un Virtual Host en el Servidor Ngnix](#id7)
 
-- [Crear carpeta y fichero index.html](#id8)
+- [Instalación Workbench en Windows clientes](#id7)
 
-- [Crear un enlace simbólico en /etc/nginx/sites-enabled](#id9)
+- [Crear Usuarios desde línea comando](#id9)
 
-- [Esctuctura final de la carpeta series](#id10)
+    - [Permisos de Usuarios](#id10)
+    
 
 - [Comprobación que la Página Web se pueda visualizar](#id6)
 
@@ -77,13 +78,13 @@ Seguimos y dejamos todo por defecto hasta llegar a la última ventana de la inst
 
 ![imagen](img/018.png)
 
-## Entramos en una Línea de comando.<a name="id4"></a>
+### Entramos en una Línea de comando.<a name="id4"></a>
 
 Comprobamos que podamos acceder a la base de datos por defecto de MySQL.
 
 ![imagen](img/023.png)
 
-## Ruta de Instalación MySQL Windows <a name="id5"></a>
+### Ruta de Instalación MySQL Windows <a name="id5"></a>
 
 Tenemos que ir a archivos de programas de windows y la carpeta mysql.
 
@@ -96,3 +97,52 @@ Entramos en MySQL Server 5.7 y comprobamos sus ficheros.
 Entramos en la carpeta bin
 
 ![imagen](img/026.png)
+
+### Comprobación del Servicio de MySQL en Windows.<a name="id6"></a>
+
+Escribimos services y comprobamos los servicios activados.
+
+![imagen](img/027.png)
+
+Para comprobar que el servicio esta iniciado por comando sería. net start
+
+![imagen](img/030.png)
+
+## Instalación Workbench en Windows clientes<a name="id7"></a>
+
+Tenemos que instalar el Workbench en Windows 7 cliente para poder acceder al servidor de MySQL. Tenemos que descargar desde [MySQL](https://dev.mysql.com/downloads/windows/installer/5.7.html).
+
+![imagen](img/028.png)
+
+Solo tenemos que ejecutar el msi, seguir el asistente.
+
+![imagen](img/029.png)
+
+Solo tenemos que seguir el asistente todo siguiente y dejar todo por defecto en la instalación.
+
+### Conectarse con el Workbench Cliente al servidor<a name="id8"></a>
+
+Tenemos que abrir el Workbench y configurar la siguiente ruta.
+
+![imagen](img/031.png)
+
+
+## Crear Usuarios desde línea comando<a name="id9"></a>
+
+Creamos el usuario desde línea de comando.
+
+![imagen](img/032.png)
+
+si queremos crear un usuario desde Workbench podemos copiar el mismo comando de la línea de comando.
+
+### Permisos de Usuarios <a name="id10"></a>
+
+Tenemos que escribir el siguiente comando.
+
+![imagen](img/033.png)
+
+Esto significa que le da permiso total, pero no llega al mismo nivel que el usuario root de privilegios.
+
+Para que todo se aplique debemos utilizar el siguiente comando.
+
+![imagen](img/034.png)

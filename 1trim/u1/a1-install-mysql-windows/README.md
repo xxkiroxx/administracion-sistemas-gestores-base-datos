@@ -17,10 +17,15 @@
 
 - [Crear Usuarios desde línea comando](#id9)
 
-    - [Permisos de Usuarios](#id10)
-    
+- [Crear Usuarios desde Workbench](#id12)
 
-- [Comprobación que la Página Web se pueda visualizar](#id6)
+
+    - [Permisos de Usuarios](#id10)
+    - [Permisos de Usuarios desde Workbench](#id11)
+
+- [Instalación del XAMP](#id13)
+
+
 
 ![imagen](img/mysql.png)
 
@@ -98,6 +103,25 @@ Entramos en la carpeta bin
 
 ![imagen](img/026.png)
 
+Tenemos que activar los archivos ocultos. En la unidad C:\, tiene que tener una carpeta oculta llamada *programadata*
+
+![imagen](img/039.jpg)
+
+Accedemos a la carpeta.
+
+![imagen](img/040.jpg)
+
+El fichero my.ini es elfichero de configuración de MySQL.
+
+Si accedemos a la carpeta Data es la información de las base de datos.
+
+![imagen](img/041.jpg)
+
+Comprobar la ruta de my.ini desde el Workbench con una conexión local.
+
+![imagen](img/042.jpg)
+
+
 ### Comprobación del Servicio de MySQL en Windows.<a name="id6"></a>
 
 Escribimos services y comprobamos los servicios activados.
@@ -107,6 +131,18 @@ Escribimos services y comprobamos los servicios activados.
 Para comprobar que el servicio esta iniciado por comando sería. net start
 
 ![imagen](img/030.png)
+
+### Configuración modo remoto en el servidor de MYSQL desde Workbench.
+
+Tenemos que ejecutar el Workbench, vamos a options file. Luego en la pestaña networking y vamos a general y marcamos **bind-address**
+
+![imagen](img/043.png)
+
+Resultado a la hora de aplicar.
+
+![imagen](img/044.png)
+
+
 
 ## Instalación Workbench en Windows clientes<a name="id7"></a>
 
@@ -122,10 +158,14 @@ Solo tenemos que seguir el asistente todo siguiente y dejar todo por defecto en 
 
 ### Conectarse con el Workbench Cliente al servidor<a name="id8"></a>
 
-Tenemos que abrir el Workbench y configurar la siguiente ruta.
+Tenemos que abrir el Workbench y configurar la siguiente ruta de direccion ip. El usuario debe ser técnico.
 
-![imagen](img/031.png)
+![imagen](img/048.jpg)
 
+Ejecutamos la conexion remota y se comprueba que podemos ver la base de datos.
+
+![imagen](img/051.jpg)
+![imagen](img/050.jpg)
 
 ## Crear Usuarios desde línea comando<a name="id9"></a>
 
@@ -135,7 +175,21 @@ Creamos el usuario desde línea de comando.
 
 si queremos crear un usuario desde Workbench podemos copiar el mismo comando de la línea de comando.
 
-### Permisos de Usuarios <a name="id10"></a>
+## Crear Usuarios desde Workbench<a name="id12"></a>
+
+Tenemos que ejecutar el Workbench y ir a users and privileges.
+
+![imagen](img/045.jpg)
+
+Creamos un usuarios nuevo llamado roberto que permite todos los hosts.
+
+![imagen](img/046.jpg)
+
+Creamos otro usuarios llamado técnico para las conexiones remotas.
+
+![imagen](img/047.jpg)
+
+### Permisos de Usuarios desde comando <a name="id10"></a>
 
 Tenemos que escribir el siguiente comando.
 
@@ -146,3 +200,27 @@ Esto significa que le da permiso total, pero no llega al mismo nivel que el usua
 Para que todo se aplique debemos utilizar el siguiente comando.
 
 ![imagen](img/034.png)
+
+### Permisos de Usuarios desde Workbench<a name="id11"></a>
+
+
+Ejecutamos el Workbench, vamos a users y privileges, seleccionamos el usuario técnico y vamos a la pestaña administrative Roles. En principio vamos a dar permiso total para el usuario técnico.
+
+![imagen](img/049.jpg)
+
+Solo debemos aplicar.
+
+El usuario root solo debe tener acceso desde el modo local.
+
+![imagen](img/052.jpg)
+
+## Instalación del XAMP<a name="id13"></a>
+Descargamos el XAMP que tenemos en el servidor Leela.
+
+![imagen](img/053.jpg)
+Iniciamos la instalación de XAMP.
+![imagen](img/054.jpg)
+Solo instalamos los clic que tenemos marcado en la imagen.
+![imagen](img/055.jpg)
+Proceso de la instalación
+![imagen](img/056.jpg)

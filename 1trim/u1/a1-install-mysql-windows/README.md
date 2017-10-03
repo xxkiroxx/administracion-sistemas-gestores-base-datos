@@ -35,6 +35,7 @@ Tenemos que ir a la página de MySQL y nos descargamos del siguiente [MySQL](htt
 ![imagen](img/001.png)
 
 ## Instalación de MySQL<a name="id2"></a>
+
 Ejecutamos el msi que se descargo y solo debemos seguir el asistente de MySQL.
 
 ![imagen](img/002.png)
@@ -46,6 +47,7 @@ Le damos siguiente.
 Seleccionamos developer default, es el por defecto de la instalación.
 
 ![imagen](img/004.png)
+
 Tenemos que darle a ejecutar. El sistema comprobara si necesitas algún paquete especial para instalar.
 
 
@@ -218,9 +220,15 @@ El usuario root solo debe tener acceso desde el modo local.
 Descargamos el XAMP que tenemos en el servidor Leela.
 
 ![imagen](img/053.jpg)
+
 Iniciamos la instalación de XAMP.
+
 ![imagen](img/054.jpg)
+
 Solo instalamos los clic que tenemos marcado en la imagen.
+
 ![imagen](img/055.jpg)
+
 Proceso de la instalación
+
 ![imagen](img/056.jpg)

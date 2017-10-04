@@ -35,7 +35,9 @@
 
     - [Conexión desde un Equipo por Red](#id15)
 
-        - [Configuración del fichero httpd-xampp.conf en el servidor de MySQL](#id20)
+        - [Comprueba que funciona el phpMyAdmin por Red](#id21)
+
+    - [Configuración del fichero httpd-xampp.conf en el servidor de MySQL](#id20)
 
 
 ![imagen](img/mysql.png)
@@ -311,4 +313,6 @@ Tenemos problemas si queremos acceder al phpMyAdmin, porque tenemos que configur
 
 ![imagen](img/062.jpg)
 
-#### Configuración del fichero httpd-xampp.conf en el servidor de MySQL<a name="id20"></a>
+#### Comprueba que funciona el phpMyAdmin por Red <a name="id21"></a>
+
+### Configuración del fichero httpd-xampp.conf en el servidor de MySQL<a name="id20"></a>

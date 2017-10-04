@@ -19,12 +19,23 @@
 
 - [Crear Usuarios desde Workbench](#id12)
 
-
     - [Permisos de Usuarios](#id10)
+
     - [Permisos de Usuarios desde Workbench](#id11)
 
 - [Instalación del XAMP](#id13)
 
+- [Configuración de phpMyAdmin](#id14)
+
+    - [Crear Base de datos de phpMyAdmin en MySQL](#id18)
+
+        - [Creamos un usuario en MySQL para phpMyAdmin](#id17)
+
+    - [Comprobar phpMyAdmin que accedemos a las Base de datos](#id16)
+
+    - [Conexión desde un Equipo por Red](#id15)
+
+        - [Configuración del fichero httpd-xampp.conf en el servidor de MySQL](#id20)
 
 
 ![imagen](img/mysql.png)
@@ -232,3 +243,72 @@ Solo instalamos los clic que tenemos marcado en la imagen.
 Proceso de la instalación
 
 ![imagen](img/056.jpg)
+
+## Configuración de phpMyAdmin<a name="id14"></a>
+
+Tenemos que ir a los ficheros de configuración de phpMyAdmin, en la siguiente imagen se ve la ruta. Tenemos que modificar el fichero config.inc.php
+
+![imagen](img/058.jpg)
+
+Vamos a la linea de la contraseña y colocamos la contraseña de root.
+
+![imagen](img/057.jpg)
+
+Ejecutamos el XAMP
+
+![imagen](img/059.jpg)
+
+Escribimos en un navegador localhost y debería salir la siguiente imagen.
+
+![imagen](img/061.jpg)
+
+Vamos a la pestaña de phpmyadmin.
+
+![imagen](img/060.jpg)
+
+Nos saldrá un mensaje de error y no podemos ver las base de datos.
+
+### Crear Base de datos de phpMyAdmin en MySQL<a name="id18"></a>
+
+Primero tenemos que ir a la ruta que nos indica esta imagen.
+
+![imagen](img/064.jpg)
+
+Abrimos el fichero create_tables.sql. Copiamos todo lo que está y vamos al Workbench y lo pegamos. Es un scripts para crear la base de datos.
+
+![imagen](img/068.jpg)
+
+#### Creamos un usuario en MySQL para phpMyAdmin<a name="id17"></a>
+
+Vamos a usuarios y privilegios.
+
+![imagen](img/066.jpg)
+
+Con todos los privilegios
+
+![imagen](img/065.jpg)
+
+### Comprobar phpMyAdmin que accedemos a las Base de datos<a name="id16"></a>
+
+Solo tenemos que escribir localhost en el navegador y realizamos clic en la pestaña phpMyAdmin.
+
+![imagen](img/067.jpg)
+
+Está ventana nos indica que las funciones están habilitadas.
+
+Entramos en una base de datos y se comprueba que ya funciona.
+
+![imagen](img/070.jpg)
+
+
+### Conexión desde un Equipo por Red<a name="id15"></a>
+
+Solo tenemos que escribir la dirección IP donde esta instalado el MySQL.
+
+![imagen](img/062.jpg)
+
+Tenemos problemas si queremos acceder al phpMyAdmin, porque tenemos que configurar el fichero httpd-xampp.conf.
+
+![imagen](img/062.jpg)
+
+#### Configuración del fichero httpd-xampp.conf en el servidor de MySQL<a name="id20"></a>

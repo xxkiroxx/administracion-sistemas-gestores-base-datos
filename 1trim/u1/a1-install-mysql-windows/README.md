@@ -126,7 +126,7 @@ Accedemos a la carpeta.
 
 ![imagen](img/040.jpg)
 
-El fichero my.ini es elfichero de configuración de MySQL.
+El fichero my.ini es el fichero de configuración de MySQL.
 
 Si accedemos a la carpeta Data es la información de las base de datos.
 

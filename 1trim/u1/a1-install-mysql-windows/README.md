@@ -311,8 +311,33 @@ Solo tenemos que escribir la dirección IP donde esta instalado el MySQL.
 
 Tenemos problemas si queremos acceder al phpMyAdmin, porque tenemos que configurar el fichero httpd-xampp.conf.
 
-![imagen](img/062.jpg)
+![imagen](img/073.jpg)
+
+> [Solución al problemas del fichero httpd-xampp.conf](#id20)
+
+
 
 #### Comprueba que funciona el phpMyAdmin por Red <a name="id21"></a>
 
+Encendemos la máquina que tenemos en red. Escribimos en el navegador la dirección IP 172.18.22.2, en la pestaña de phpMyAdmin y comprobamos que nos entra.
+
+![imagen](img/074.jpg)
+
+Entramos en la base de datos de jardineria y comprobamos que podemos ver todo desde un equipo de la red.
+
+![imagen](img/075.jpg)
+
 ### Configuración del fichero httpd-xampp.conf en el servidor de MySQL<a name="id20"></a>
+
+Tenemos que ir a la siguiente ruta:
+
+    C:\xampp\apache\conf\extra
+
+
+![imagen](img/071.jpg)
+
+Editamos el fichero.
+
+Solo tenemos que comentar la línea de httpd-xampp.confg
+
+![imagen](img/072.jpg)

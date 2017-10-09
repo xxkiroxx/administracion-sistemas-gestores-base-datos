@@ -1,4 +1,4 @@
-# MYSQL Windows
+# MYSQL en Windows
 
 - [Descarga de MySQL para Windows](#id1)
 

@@ -198,6 +198,9 @@ Accedemos desde el servidor al cliente de mysql con el siguiente comando.
 
 ![image](img/028.png)
 
+Realizamos la misma comprobación desde un Equipo mediante red, remoto y conectamos a la base de datos del servidor.
+
+![image](img/042.png)
 
 ## Configuración de la seguridad post-instalación (ejecutar mysql_secure_installation)<a name="15"></a>
 
@@ -270,6 +273,11 @@ Para cambiar los mensajes de error a español tenemos dos opciones.
 - Vamos a la ruta `/etc/mysql/my.cnf` y escribimos `lc_messages=es_ES`
 
 ![image](img/037.png)
+
+Si nos fijamos a la hora de escribir un error a la hora de realizar una búsqueda o consulta.
+
+![image](img/043.png)
+
 
 ## Comprobación que podemos acceder desde un equipo de red a la base de datos del servidor.<a name="22"></a>
 

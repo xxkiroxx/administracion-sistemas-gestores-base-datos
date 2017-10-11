@@ -101,6 +101,10 @@ La ruta es la siguiente `/etc/init.d/mysql`
 
 ![image](img/013.png)
 
+Para saber si el servicio se está ejecutando podemos utilizar el siguiente comando.
+
+![image](img/044.png)
+
 ## Instalación MySQL Cliente en el Servidor<a name="5"></a>
 
 Primero tenemos que actualizar los repositorio.

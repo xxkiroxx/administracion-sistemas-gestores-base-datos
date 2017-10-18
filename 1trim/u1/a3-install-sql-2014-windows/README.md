@@ -57,8 +57,32 @@ Comprobamos que se realizó la instalación de SQL Server 2014
 
 
 
-## Instalación de Management Studio en un cliente Windows 7 <a name="4"></a>
+## Instalación de Management Studio en  Windows Server 2012 y Windows 10<a name="4"></a>
 
+Tenemos que ir la página de Microsoft y descargamos el siguiente [Management-Studio](https://docs.microsoft.com/es-es/sql/ssms/download-sql-server-management-studio-ssms)
+
+![imagen](img/015.png)
+
+Ejecutamos la aplicación para iniciar la instalación en Windows Server 2012.
+
+![imagen](img/016.png)
+
+![imagen](img/017.png)
+
+![imagen](img/018.png)
+
+![imagen](img/019.png)
+
+Abrimos el Management-Studio y vamos a crear una base de datos llamada neptuno
+
+![imagen](img/021.png)
+
+
+Solo tenemos que crear un new query
+
+![imagen](img/020.png)
+
+Realizamos el mismo procedimiento de instalación del Windows Server 2012 en el cliente Windows 10
 
 
 ## Acceso remoto desde Management Studio de Windows 7 a la instancia de SQL Server del servidor Windows Server 2012, tanto por nombre de máquina como por IP. Investigar con los recursos del curso y realizar las configuraciones necesarias para estas conexiones. <a name="5"></a>

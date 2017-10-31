@@ -235,7 +235,7 @@ alu5906@server:~$
 
 4. Para gestionar variables tenemos, como hemos visto, el comando SHOW "comando":
 
-    - cómo mostrar todos los motores de almacenamiento
+- cómo mostrar todos los motores de almacenamiento
 
     `show engines;`
 
@@ -257,15 +257,16 @@ mysql> show engines;
 9 rows in set (0,00 sec)
 ```
 
-    - cómo mostrar el estado actual del servidor
+- cómo mostrar el estado actual del servidor
 
     `show status;`
 
-    - cómo averiguar todos los clientes que están conectados al servidor
+- cómo averiguar todos los clientes que están conectados al servidor
 
     `show processlist;`
 
-    ```consoles
+```console
+
     mysql> show processlist;
 +----+------+-----------+------+---------+------+----------+------------------+
 | Id | User | Host      | db   | Command | Time | State    | Info             |
@@ -273,10 +274,10 @@ mysql> show engines;
 | 12 | root | localhost | NULL | Query   |    0 | starting | show processlist |
 +----+------+-----------+------+---------+------+----------+------------------+
 1 row in set (0,00 sec)
+
 ```
 
-
-    - cómo conocer todas las tablas que están abiertas
+- cómo conocer todas las tablas que están abiertas
 
     `show open tables;`
 
@@ -373,6 +374,7 @@ mysql> show processlist;
 1 row in set (0,00 sec)
 
 mysql>
+
 ```
 
 6. ¿Cuántas consultas se están ejecutado hasta el momento en tu servidor MYSQL? ¿Y si se trata de consultas lentas?

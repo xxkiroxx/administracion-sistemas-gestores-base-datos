@@ -237,7 +237,7 @@ alu5906@server:~$
 
 **- cómo mostrar todos los motores de almacenamiento**
 
-    `show engines;`
+`show engines;`
 
 ```consoles
 mysql> show engines;
@@ -259,11 +259,11 @@ mysql> show engines;
 
 **- cómo mostrar el estado actual del servidor**
 
-    `show status;`
+`show status;`
 
 **- cómo averiguar todos los clientes que están conectados al servidor**
 
-    `show processlist;`
+`show processlist;`
 
 ```console
 
@@ -279,7 +279,7 @@ mysql> show engines;
 
 **- cómo conocer todas las tablas que están abiertas**
 
-    `show open tables;`
+`show open tables;`
 
 ### 2.1 Variables de estado
 

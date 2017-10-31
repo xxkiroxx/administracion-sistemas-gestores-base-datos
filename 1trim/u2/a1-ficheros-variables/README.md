@@ -64,7 +64,7 @@ alu5906@server:~$
 
 ```
 
-- ¿Cómo se escribe un comentario en este fichero?
+**- ¿Cómo se escribe un comentario en este fichero?**
 
 Solo tenemos que escribir delante `# Escribe aquí` por lo tanto esa línea esta comentada.
 Para comentar múltiple líneas `/* escribe aquí */`
@@ -105,7 +105,7 @@ port = 3306
 
 ```
 
-- ¿Y un grupo de opciones?
+**- ¿Y un grupo de opciones?**
 
 
 Solo tenemos que abrir unos corchetes `[Escribe_Nombre_Grupo]`.
@@ -118,13 +118,13 @@ lc-messages = es_ES
 language = "spanish"
 
 ```
-- ¿Todas las opciones tienen un valor?
+**- ¿Todas las opciones tienen un valor?**
 
 Según algunas opciones necesitan un valor y otras no.
 
 ![](img/002.png)
 
-- Ejecuta "mysqld --verbose --help" desde una consola para ver una lista de las variables del servidor. Para ver mejor el texto mejor redirecciona la salida a fichero.
+**- Ejecuta "mysqld --verbose --help" desde una consola para ver una lista de las variables del servidor. Para ver mejor el texto mejor redirecciona la salida a fichero.**
 
 ```console
 alu5906@server:~$ sudo mysqld --verbose --help >> mysqld-verbose-help.txt
@@ -134,7 +134,7 @@ Ejemplo del fichero mysqld-verbose-help.texto
 
 ![](img/003.png)
 
-- Explica qué significan y que se consigue con cada una de las variables del siguiente fichero de configuración
+**- Explica qué significan y que se consigue con cada una de las variables del siguiente fichero de configuración**
 
 ```bash
 [client] # Grupo Cliente
@@ -175,7 +175,7 @@ Si quisieramos poner por defecto InnoDB:
 
 `default-storage-engine=InnoDB`
 
-1. Define qué son las variables del servidor.
+**1. Define qué son las variables del servidor.**
 
 MySQL tiene muchas variables del sistema que indican cómo están configurado. La gran mayoría se puede modificar dinámicamente mientras el servidor esta corriendo.
 
@@ -185,7 +185,7 @@ MySQL tiene muchas variables del sistema que indican cómo están configurado. L
     - **Sesión:** Afectan la operación de las conexiones de clientes individuales.
 
 
-2. Usa el comando "SHOW VARIABLES" para conocer el valor de todas las variables y enviar el resultado a un fichero.
+**2. Usa el comando "SHOW VARIABLES" para conocer el valor de todas las variables y enviar el resultado a un fichero.**
 
 ```console
 
@@ -202,7 +202,7 @@ alu5906@server:~$
 ```
 No muestro todo el fichero de variables.txt porque es muy grande, por lo tanto realice un filtro con el `grep` para buscar una variable en concreto en este caso fue wait_timeout.
 
-3. Repite lo anterior para mostrar solo las variables relacionadas con el motor "InnoDB".
+**3. Repite lo anterior para mostrar solo las variables relacionadas con el motor "InnoDB".**
 
 En la siguiente demostración primero mostramos los motores y luego pasamos aun fichero de texto. Comprobamos que ese fichero tiene todos los datos de los motores engines.
 
@@ -233,9 +233,9 @@ alu5906@server:~$
 ```
 
 
-4. Para gestionar variables tenemos, como hemos visto, el comando SHOW "comando":
+**4. Para gestionar variables tenemos, como hemos visto, el comando SHOW "comando":**
 
-- cómo mostrar todos los motores de almacenamiento
+**- cómo mostrar todos los motores de almacenamiento**
 
     `show engines;`
 
@@ -257,11 +257,11 @@ mysql> show engines;
 9 rows in set (0,00 sec)
 ```
 
-- cómo mostrar el estado actual del servidor
+**- cómo mostrar el estado actual del servidor**
 
     `show status;`
 
-- cómo averiguar todos los clientes que están conectados al servidor
+**- cómo averiguar todos los clientes que están conectados al servidor**
 
     `show processlist;`
 
@@ -277,7 +277,7 @@ mysql> show engines;
 
 ```
 
-- cómo conocer todas las tablas que están abiertas
+**- cómo conocer todas las tablas que están abiertas**
 
     `show open tables;`
 
@@ -292,11 +292,11 @@ Haz la lecturas de los siguientes enlaces y responde documentando las preguntas:
 - "SHOW Syntax" http://dev.mysql.com/doc/refman/5.7/en/show.html
 
 
-1. Define qué son las variables de estado.
+**1. Define qué son las variables de estado.**
 
 Son para saber como está funcionando nuestra base de datos, si tiene algún fallo. Simplemente monitoriza regularmente el estado de MYSQL.
 
-2. Usa el comando "SHOW STATUS" para conocer el valor de todas las variables..
+**2. Usa el comando "SHOW STATUS" para conocer el valor de todas las variables..**
 
 Utilizamos el comando `show status;` para comprobar los valores de las variables.
 
@@ -312,7 +312,7 @@ Tc_log_page_size	0
 alu5906@server:~$
 ```
 
-3. Haz que uno o más de tus compañeros se conecte a tu servidor (puede que por cuestión de permisos no os podáis conectar).
+**3. Haz que uno o más de tus compañeros se conecte a tu servidor (puede que por cuestión de permisos no os podáis conectar).**
 
 La conexión la realizó con una máquina virtual cliente que tengo creada y me conecto con el usuario ya creado llamado roberto. Me conecta correctamente d la siguiente forma.
 
@@ -336,7 +336,7 @@ mysql>
 
 ```
 
-4. Comprueba quién está conectado usando el comando correspondiente (Pista: es un comando visto `SHOW processlist;`).
+**4. Comprueba quién está conectado usando el comando correspondiente (Pista: es un comando visto `SHOW processlist;`).**
 
 ```console
 mysql> show processlist;
@@ -350,7 +350,7 @@ mysql> show processlist;
 
 ```
 
-5. Intenta desconectarlo con el comando `kill`"
+**5. Intenta desconectarlo con el comando `kill`"**
 
 ```console
 mysql> show processlist;
@@ -377,10 +377,10 @@ mysql>
 
 ```
 
-6. ¿Cuántas consultas se están ejecutado hasta el momento en tu servidor MYSQL? ¿Y si se trata de consultas lentas?
+**6. ¿Cuántas consultas se están ejecutado hasta el momento en tu servidor MYSQL? ¿Y si se trata de consultas lentas?**
 
 
-7. Un estado informa  el sobre el máximo de conexiones concurrentes que se ha dado en la sesión de trabajo. ¿Cuál es?
+**7. Un estado informa  el sobre el máximo de conexiones concurrentes que se ha dado en la sesión de trabajo. ¿Cuál es?**
 
 ### 2.2 Variables dinámicas
 Son aquellas que son modificables en tiempo de ejecución.

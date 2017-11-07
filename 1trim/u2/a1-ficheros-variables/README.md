@@ -380,7 +380,67 @@ mysql>
 **6. ¿Cuántas consultas se están ejecutado hasta el momento en tu servidor MYSQL? ¿Y si se trata de consultas lentas?**
 
 
+Se encuentra en la variable `queries` y para mostrarlo debemos realizar la siguiente consulta.
+
+```console
+mysql> show status like "%queries%";
++-------------------------+-------+
+| Variable_name           | Value |
++-------------------------+-------+
+| Qcache_queries_in_cache | 0     |
+| Queries                 | 55    |
+| Slow_queries            | 0     |
++-------------------------+-------+
+3 rows in set (0,00 sec)
+
+mysql>
+```
+
+Para las consultas lentas solo debemos escribir en la variable `slow_queries`
+
+```console
+
+mysql> show status like "%Slow_queries%";
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| Slow_queries  | 0     |
++---------------+-------+
+1 row in set (0,00 sec)
+
+mysql>
+
+```
+
 **7. Un estado informa  el sobre el máximo de conexiones concurrentes que se ha dado en la sesión de trabajo. ¿Cuál es?**
+
+```console
+alu5906@server:~$ mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.7.20-0ubuntu0.16.04.1-log (Ubuntu)
+
+Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show variables like "max_connection%";
++-----------------+-------+
+| Variable_name   | Value |
++-----------------+-------+
+| max_connections | 151   |
++-----------------+-------+
+1 row in set (0,01 sec)
+
+mysql>
+
+
+```
 
 ### 2.2 Variables dinámicas
 Son aquellas que son modificables en tiempo de ejecución.
@@ -392,31 +452,85 @@ Haz la lectura de los siguientes enlaces y contesta razonadamente a las pregunta
 - "SET Syntax" http://dev.mysql.com/doc/refman/5.7/en/set-statement.html
 
 
-1. Detalla los posibles atributos que tendría una variable de servidor como "port".
+**1. Detalla los posibles atributos que tendría una variable de servidor como "port".**
 
-|Command-Line Format | | |
+|Command-Line Format | --port=# |
 |---- |---- |---- |
-|System Variable|	Name|	port|
-|               |Variable Scope| |
-|               |Dynamic Variable| |
-|               |Dynamic Variable| |
-|  Permitted Values	             |Type	| |
-|               |Default| |
-|               |Min Value| |
-|               |Max Value| |
+||	Name|	port|
+| **System Variable**              |Variable Scope|Global|
+|               |Dynamic Variable| No|
+|  **Permitted Values**	             |Type	| integer |
+|               |Default| 3306 |
+|               |Min Value| 0|
+|               |Max Value| 65535 |
 
 
 
-2.-¿Cómo podemos saber si una variable es dinámica o no?
+**2.-¿Cómo podemos saber si una variable es dinámica o no?**
+
+La variables dinámicas son las que se puede modificar mientras el servidor esta corriendo se llaman `show variables` y las `show status` no son dinámicas
 
 ## 3.-¿Qué hace la variable "uptime"?
 
 - Indica su valor en tu servidor
 
+El tiempo que está ejecutando el servidor.
 
-- ¿Es posible modificar su valor con comando SET?
+```console
 
+mysql> show status like "%uptime%";
++---------------------------+-------+
+| Variable_name             | Value |
++---------------------------+-------+
+| Uptime                    | 2257  |
+| Uptime_since_flush_status | 2257  |
++---------------------------+-------+
+2 rows in set (0,00 sec)
+
+mysql>
+
+```
+
+**- ¿Es posible modificar su valor con comando SET?**
+
+Por lo tanto no se puede, es modo estático.
 
 ## 4.- Localiza la variable que establece el límite de conexiones concurrentes. ¿Cuál es?
 
+```console
+mysql> show variables like "max_connections";
++-----------------+-------+
+| Variable_name   | Value |
++-----------------+-------+
+| max_connections | 151   |
++-----------------+-------+
+1 row in set (0,00 sec)
+
+mysql>
+
+```
+
 Modifícala y establece un máximo de 100 conexiones concurrentes
+
+Solo tenemos que ir al fichero de configuración `my.conf`
+
+```console
+
+alu5906@server:~$ sudo cat /etc/mysql/my.cnf | grep connection
+max_connections = 100
+alu5906@server:~$ sudo systemctl restart mysql
+```
+
+Vuelvo a comprobar si en el servidor mysql se realizo los cambios.
+
+```console
+mysql> show variables like "max_connections";
++-----------------+-------+
+| Variable_name   | Value |
++-----------------+-------+
+| max_connections | 100   |
++-----------------+-------+
+1 row in set (0,00 sec)
+
+mysql>
+```

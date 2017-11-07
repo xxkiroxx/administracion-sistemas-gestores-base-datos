@@ -454,18 +454,42 @@ Haz la lectura de los siguientes enlaces y contesta razonadamente a las pregunta
 
 **1. Detalla los posibles atributos que tendría una variable de servidor como "port".**
 
-
-
-
-|Command-Line Format | --port=# |
-|---- |---- |---- |
-||	Name|	port|
-| **System Variable**              |Variable Scope| Global |
-|               | Dynamic Variable| No|
-|  **Permitted Values**	             |Type	| integer |
-|               |Default| 3306 |
-|               |Min Value| 0|
-|               |Max Value| 65535 |
+<table>
+<tr>
+<td>Command-Line Format</td>
+<td colspan="2"> --port=#</td>
+</tr>
+<tr>
+<td rowspan="3">System Variable</td>
+<td>Name</td>
+<td>Port</td>
+</tr>
+<tr>
+<td>Variable Scope</td>
+<td>Global</td>
+</tr>
+<tr>
+<td>Dynamic Variable</td>
+<td>No</td>
+</tr>
+<tr>
+<td rowspan="4">Permitted Values</td>
+<td>type</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>Default</td>
+<td>3306</td>
+</tr>
+<tr>
+<td>Min Value</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Max Value</td>
+<td>65535</td>
+</tr>
+</table>
 
 
 

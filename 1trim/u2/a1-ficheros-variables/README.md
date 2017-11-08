@@ -492,7 +492,6 @@ Haz la lectura de los siguientes enlaces y contesta razonadamente a las pregunta
 </table>
 
 
-
 **2.-¿Cómo podemos saber si una variable es dinámica o no?**
 
 La variables dinámicas son las que se puede modificar mientras el servidor esta corriendo se llaman `show variables` y las `show status` no son dinámicas

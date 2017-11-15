@@ -1,9 +1,16 @@
 # Diccionario de Datos
 
-- [Interrogando la bases de datos Information_schema](#1)
-- [](#2)
-- [](#3)
-- [](#4)
+- [Interrogando la bases de datos Information_schema, extrae información (atributos table_name, table_type) sobre las tablas que conforman la base de datos "sakila"](#1)
+
+- [¿Cuál es el comando SHOW equivalente al anterior?](#2)
+
+- [3. Repite lo mismo extrayendo la información sobre el esquema de una tabla en particular de la base de datos "sakila" (atributos column_name, data_type, is_nullable, column_default). Usar tabla columns](#3)
+
+- [¿Cuál es el comando SHOW equivalente al anterior?](#4)
+
+- [Atendiendo a la base de datos "Information_schema", ¿cuáles son las tablas principales según tu criterio? Puedes ayudarte para ver todas las tablas utilizando Workbench. Para ello ir a preferencias y activar ver los metadatos.](#5)
+
+![](img/000.png)
 
 ## Estructura del Diccionario de datos
 El diccionario de datos es un componente esencial en cualquier SGBD ya que contiene información (metadatos) sobre los objetos de las bases de datos alojadas en nuestro servidor. Metadatos son datos acerca de los datos, tales como el nombre de las bases de datos o tablas, el tipo de datos de una columna o los permisos de accesso. Otros términos sinónimos son "Diccionario de datos" o "Catálogo del sistema".

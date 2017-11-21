@@ -536,3 +536,10 @@ mysql> show full tables;
 
 mysql>
 ```
+**INFORMATION_SCHEMA** es una base de datos dentro de cada instancia de MySQL, el lugar que almacena información sobre todas las demás bases de datos que mantiene el servidor MySQL. La base de datos INFORMATION_SCHEMA contiene varias tablas de solo lectura. En realidad, son vistas, no tablas base, por lo que no hay archivos asociados con ellas, y no puede establecer desencadenantes en ellas.
+
+Las tablas o vistas de information_schema una de las importante es las de privilegios, es para establecer a cada usuario derecho a la hora de acceder a esas tablas o base de datos.
+
+La otra tabla importante es la de engines de los motores de búsqueda y tenga un motor adecuado para optimizar bien el rendimiento.
+
+Pero por lo general casi todas las tablas son importantes ya que cada tabla sirve para darte una determinada información que es necesaria en la base de datos.

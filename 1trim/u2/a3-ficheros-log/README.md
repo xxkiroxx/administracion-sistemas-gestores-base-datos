@@ -1,4 +1,5 @@
 # 4.- Ficheros Log
+![](img/000.png)
 ## Ficheros LOG: Error LOG
 El fichero "Error Log" registra problemas encontrados iniciando, ejecutando o parando mysqld.
 Lee el pdf de la UD1.- Instalación y Configuración de un SGBD, la parte 5 de  Los Ficheros LOG
@@ -609,4 +610,4 @@ Vamos a las siguientes líneas y comprobamos que son diferentes, es decir el Wor
 2017-11-22T12:08:40.143500Z	   13 Query	SELECT CONNECTION_ID()
 2017-11-22T12:08:40.143689Z	   13 Query	SHOW SESSION STATUS LIKE 'Ssl_cipher'
 ```
-El Workbench carga varias consultas que necesita el programa para que funcione adecuadamente. 
+El Workbench carga varias consultas que necesita el programa para que funcione adecuadamente.

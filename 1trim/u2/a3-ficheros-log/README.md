@@ -378,6 +378,235 @@ alu5906@server:/etc/mysql$
 
 ### 3. Averigua viendo el fichero "miserver.log" la hora en que se conectó tu compañero y ejecutó las consultas del apartado anterior.
 
+Enciendo una máquina virtual de Cliente con un sistema Ubuntu instalado y me conecto por terminal a la base de datos del Servidor Ubuntu.
 
+```console
+alu5906@cliente:~$ mysql -u roberto -h 172.18.22.2 -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 4
+Server version: 5.7.20-0ubuntu0.16.04.1-log (Ubuntu)
+
+Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> select hola;
+ERROR 1054 (42S22): La columna 'hola' en field list es desconocida
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| prueba             |
+| sakila             |
+| sys                |
++--------------------+
+7 rows in set (0,06 sec)
+
+mysql> use sakila;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql>
+```
+Vamos al servidor y comprobamos en el fichero `/var/lib/mysql/miserver.log`
+
+Con el comando tail -31 vamos a buscar las últimas 31 líneas y se comprueba que el cliente con la dirección IP `172.18.22.3` se conecta la base de datos del servidor con el usuario `roberto` y realiza varias consultas, como comprobamos en las demás líneas. El usuario roberto accede a la base de datos de `sakila`.
+
+```console
+alu5906@server:~$ sudo tail -31 /var/lib/mysql/miserver.log
+2017-11-22T11:46:17.041194Z	    4 Connect	roberto@172.18.22.3 on  using TCP/IP
+2017-11-22T11:46:17.041856Z	    4 Query	select @@version_comment limit 1
+2017-11-22T11:46:31.608192Z	    4 Query	select hola
+2017-11-22T11:46:52.398096Z	    4 Query	show databases
+2017-11-22T11:46:59.188444Z	    4 Query	SELECT DATABASE()
+2017-11-22T11:46:59.188987Z	    4 Init DB	sakila
+2017-11-22T11:46:59.190114Z	    4 Query	show databases
+2017-11-22T11:46:59.191617Z	    4 Query	show tables
+2017-11-22T11:46:59.192773Z	    4 Field List	actor
+2017-11-22T11:46:59.357447Z	    4 Field List	actor_info
+2017-11-22T11:46:59.447722Z	    4 Field List	address
+2017-11-22T11:46:59.476749Z	    4 Field List	category
+2017-11-22T11:46:59.477093Z	    4 Field List	city
+2017-11-22T11:46:59.488564Z	    4 Field List	country
+2017-11-22T11:46:59.512354Z	    4 Field List	customer
+2017-11-22T11:46:59.552501Z	    4 Field List	customer_list
+2017-11-22T11:46:59.553024Z	    4 Field List	film
+2017-11-22T11:46:59.553461Z	    4 Field List	film_actor
+2017-11-22T11:46:59.553687Z	    4 Field List	film_category
+2017-11-22T11:46:59.553887Z	    4 Field List	film_list
+2017-11-22T11:46:59.554239Z	    4 Field List	film_text
+2017-11-22T11:46:59.554574Z	    4 Field List	inventory
+2017-11-22T11:46:59.581854Z	    4 Field List	language
+2017-11-22T11:46:59.595017Z	    4 Field List	nicer_but_slower_film_list
+2017-11-22T11:46:59.595717Z	    4 Field List	payment
+2017-11-22T11:46:59.627271Z	    4 Field List	rental
+2017-11-22T11:46:59.628102Z	    4 Field List	sales_by_film_category
+2017-11-22T11:46:59.628573Z	    4 Field List	sales_by_store
+2017-11-22T11:46:59.668410Z	    4 Field List	staff
+2017-11-22T11:46:59.668930Z	    4 Field List	staff_list
+2017-11-22T11:46:59.669374Z	    4 Field List	store
+alu5906@server:~$
+```
+Por lo tanto tenemos activado el general_log y cualquier usuario que se conecte o realice cualquier consulta todos esos registros se guardan en el fichero `/var/lib/mysql/miserver.log`
+
+    Nota: `/var/lib/mysql/miserver.log`
+    Este fichero suele crecer en tamaño porque guarda todo lo que haga todos los usuarios de mysql y todas sus consultas.
 
 ### 4. Accede al servidor a través de Workbench. ¿Qué se registra en "general_log"?¿Hay alguna diferencia respecto al cliente mysql ?
+
+Realizamos un consulta desde el cliente mysql desde terminal.
+
+```console
+alu5906@cliente:~$ mysql -u roberto -h 172.18.22.2 -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 5.7.20-0ubuntu0.16.04.1-log (Ubuntu)
+
+Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show variables like "general_log%";
++------------------+-----------------------------+
+| Variable_name    | Value                       |
++------------------+-----------------------------+
+| general_log      | ON                          |
+| general_log_file | /var/lib/mysql/miserver.log |
++------------------+-----------------------------+
+2 rows in set (0,00 sec)
+
+mysql>
+```
+Comprobamos el fichero `/var/lib/mysql/miserver.log`
+
+```console
+alu5906@server:~$ sudo tail -f /var/lib/mysql/miserver.log
+2017-11-22T12:08:05.835158Z	   10 Connect	roberto@172.18.22.3 on  using TCP/IP
+2017-11-22T12:08:05.835484Z	   10 Query	select @@version_comment limit 1
+2017-11-22T12:08:23.330984Z	   10 Query	show variables like "general_log%"
+```
+Como comprobamos nos sale que se conecta y realiza un consulta.
+
+Realizamos el mismo proceso pero desde el Workbench del cliente.
+
+![](img/001.png)
+
+Volvemos al servidor y escribimos el comando anterior para comprobar el fichero y vemos la diferencia entre una conexión mysql cliente con una conexión Workbench.
+
+```console
+alu5906@server:~$ sudo tail -70 /var/lib/mysql/miserver.log
+2017-11-22T12:08:05.835158Z	   10 Connect	roberto@172.18.22.3 on  using TCP/IP
+2017-11-22T12:08:05.835484Z	   10 Query	select @@version_comment limit 1
+2017-11-22T12:08:23.330984Z	   10 Query	show variables like "general_log%"
+2017-11-22T12:08:35.649902Z	   11 Connect	roberto@172.18.22.3 on  using TCP/IP
+2017-11-22T12:08:35.649930Z	   11 Connect	Acceso negado para usuario: 'roberto'@'172.18.22.3' (Usando clave: NO)
+2017-11-22T12:08:40.134133Z	   12 Connect	roberto@172.18.22.3 on  using TCP/IP
+2017-11-22T12:08:40.134340Z	   12 Query	set autocommit=1
+2017-11-22T12:08:40.134534Z	   12 Query	SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ
+2017-11-22T12:08:40.134750Z	   12 Query	SHOW SESSION VARIABLES LIKE 'lower_case_table_names'
+2017-11-22T12:08:40.136707Z	   12 Query	SELECT current_user()
+2017-11-22T12:08:40.136997Z	   12 Query	SET CHARACTER SET utf8
+2017-11-22T12:08:40.137499Z	   12 Query	SET NAMES utf8
+2017-11-22T12:08:40.137744Z	   12 Query	SHOW SESSION VARIABLES LIKE 'sql_mode'
+2017-11-22T12:08:40.139004Z	   12 Query	SELECT CONNECTION_ID()
+2017-11-22T12:08:40.139292Z	   12 Query	SHOW SESSION STATUS LIKE 'Ssl_cipher'
+2017-11-22T12:08:40.140070Z	   12 Query	USE `prueba`
+2017-11-22T12:08:40.140237Z	   12 Query	set autocommit=1
+2017-11-22T12:08:40.140979Z	   13 Connect	roberto@172.18.22.3 on  using TCP/IP
+2017-11-22T12:08:40.141162Z	   13 Query	set autocommit=1
+2017-11-22T12:08:40.141344Z	   13 Query	SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ
+2017-11-22T12:08:40.141529Z	   13 Query	SHOW SESSION VARIABLES LIKE 'lower_case_table_names'
+2017-11-22T12:08:40.142763Z	   13 Query	SELECT current_user()
+2017-11-22T12:08:40.142958Z	   13 Query	SET CHARACTER SET utf8
+2017-11-22T12:08:40.143145Z	   13 Query	SET NAMES utf8
+2017-11-22T12:08:40.143325Z	   13 Query	SET SQL_SAFE_UPDATES=1
+2017-11-22T12:08:40.143500Z	   13 Query	SELECT CONNECTION_ID()
+2017-11-22T12:08:40.143689Z	   13 Query	SHOW SESSION STATUS LIKE 'Ssl_cipher'
+2017-11-22T12:08:40.144414Z	   13 Query	USE `prueba`
+2017-11-22T12:08:40.144579Z	   13 Query	set autocommit=1
+2017-11-22T12:08:40.144746Z	   13 Query	SHOW SESSION VARIABLES LIKE 'sql_mode'
+2017-11-22T12:08:40.145839Z	   13 Query	SHOW SESSION VARIABLES LIKE 'version_comment'
+2017-11-22T12:08:40.146875Z	   13 Query	SHOW SESSION VARIABLES LIKE 'version'
+2017-11-22T12:08:40.147939Z	   13 Query	SELECT current_user()
+2017-11-22T12:08:40.148174Z	   13 Query	SHOW SESSION VARIABLES LIKE 'lower_case_table_names'
+2017-11-22T12:08:40.168464Z	   12 Query	SHOW DATABASES
+2017-11-22T12:08:41.546735Z	   12 Query	SHOW DATABASES
+2017-11-22T12:08:41.547490Z	   13 Query	SHOW SESSION VARIABLES LIKE 'version_compile_os'
+2017-11-22T12:08:41.562346Z	   12 Query	SHOW GLOBAL VARIABLES
+2017-11-22T12:08:41.571475Z	   12 Query	SHOW ENGINES
+2017-11-22T12:08:41.721228Z	   12 Query	SHOW FULL TABLES FROM `prueba`
+2017-11-22T12:08:41.721741Z	   12 Query	SELECT name, type FROM mysql.proc WHERE Db='prueba'
+2017-11-22T12:08:41.931507Z	   12 Query	SHOW FULL TABLES FROM `sakila`
+2017-11-22T12:08:41.932327Z	   12 Query	SELECT name, type FROM mysql.proc WHERE Db='sakila'
+2017-11-22T12:08:41.944659Z	   12 Query	SHOW COLUMNS FROM `sakila`.`actor`
+2017-11-22T12:08:41.947424Z	   12 Query	SHOW COLUMNS FROM `sakila`.`address`
+2017-11-22T12:08:41.948943Z	   12 Query	SHOW COLUMNS FROM `sakila`.`category`
+2017-11-22T12:08:41.950616Z	   12 Query	SHOW COLUMNS FROM `sakila`.`city`
+2017-11-22T12:08:41.952287Z	   12 Query	SHOW COLUMNS FROM `sakila`.`country`
+2017-11-22T12:08:41.954195Z	   12 Query	SHOW COLUMNS FROM `sakila`.`customer`
+2017-11-22T12:08:41.956101Z	   12 Query	SHOW COLUMNS FROM `sakila`.`film`
+2017-11-22T12:08:41.958668Z	   12 Query	SHOW COLUMNS FROM `sakila`.`film_actor`
+2017-11-22T12:08:41.960281Z	   12 Query	SHOW COLUMNS FROM `sakila`.`film_category`
+2017-11-22T12:08:41.961943Z	   12 Query	SHOW COLUMNS FROM `sakila`.`film_text`
+2017-11-22T12:08:41.963526Z	   12 Query	SHOW COLUMNS FROM `sakila`.`inventory`
+2017-11-22T12:08:41.965107Z	   12 Query	SHOW COLUMNS FROM `sakila`.`language`
+2017-11-22T12:08:41.966729Z	   12 Query	SHOW COLUMNS FROM `sakila`.`payment`
+2017-11-22T12:08:41.968790Z	   12 Query	SHOW COLUMNS FROM `sakila`.`rental`
+2017-11-22T12:08:41.970463Z	   12 Query	SHOW COLUMNS FROM `sakila`.`staff`
+2017-11-22T12:08:41.972197Z	   12 Query	SHOW COLUMNS FROM `sakila`.`store`
+2017-11-22T12:08:41.973757Z	   12 Query	SHOW COLUMNS FROM `sakila`.`actor_info`
+2017-11-22T12:08:41.975767Z	   12 Query	SHOW COLUMNS FROM `sakila`.`customer_list`
+2017-11-22T12:08:41.978096Z	   12 Query	SHOW COLUMNS FROM `sakila`.`film_list`
+2017-11-22T12:08:41.980060Z	   12 Query	SHOW COLUMNS FROM `sakila`.`nicer_but_slower_film_list`
+2017-11-22T12:08:41.982072Z	   12 Query	SHOW COLUMNS FROM `sakila`.`sales_by_film_category`
+2017-11-22T12:08:41.983706Z	   12 Query	SHOW COLUMNS FROM `sakila`.`sales_by_store`
+2017-11-22T12:08:41.985806Z	   12 Query	SHOW COLUMNS FROM `sakila`.`staff_list`
+2017-11-22T12:09:03.900114Z	   13 Query	show variables like "general_log%"
+2017-11-22T12:09:03.901407Z	   12 Query	SELECT st.* FROM performance_schema.events_statements_current st JOIN performance_schema.threads thr ON thr.thread_id = st.thread_id WHERE thr.processlist_id = 13
+2017-11-22T12:09:03.902010Z	   12 Query	SELECT st.* FROM performance_schema.events_stages_history_long st WHERE st.nesting_event_id = 18
+2017-11-22T12:09:03.902428Z	   12 Query	SELECT st.* FROM performance_schema.events_waits_history_long st WHERE st.nesting_event_id = 18
+alu5906@server:~$
+```
+
+Vamos a las siguientes líneas y comprobamos que son diferentes, es decir el Workbench carga mas cosas como el set CHARACTER, muestra la variables SESSION VARIABLES, etc.
+
+```console
+2017-11-22T12:08:40.134133Z	   12 Connect	roberto@172.18.22.3 on  using TCP/IP
+2017-11-22T12:08:40.134340Z	   12 Query	set autocommit=1
+2017-11-22T12:08:40.134534Z	   12 Query	SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ
+2017-11-22T12:08:40.134750Z	   12 Query	SHOW SESSION VARIABLES LIKE 'lower_case_table_names'
+2017-11-22T12:08:40.136707Z	   12 Query	SELECT current_user()
+2017-11-22T12:08:40.136997Z	   12 Query	SET CHARACTER SET utf8
+2017-11-22T12:08:40.137499Z	   12 Query	SET NAMES utf8
+2017-11-22T12:08:40.137744Z	   12 Query	SHOW SESSION VARIABLES LIKE 'sql_mode'
+2017-11-22T12:08:40.139004Z	   12 Query	SELECT CONNECTION_ID()
+2017-11-22T12:08:40.139292Z	   12 Query	SHOW SESSION STATUS LIKE 'Ssl_cipher'
+2017-11-22T12:08:40.140070Z	   12 Query	USE `prueba`
+2017-11-22T12:08:40.140237Z	   12 Query	set autocommit=1
+2017-11-22T12:08:40.140979Z	   13 Connect	roberto@172.18.22.3 on  using TCP/IP
+2017-11-22T12:08:40.141162Z	   13 Query	set autocommit=1
+2017-11-22T12:08:40.141344Z	   13 Query	SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ
+2017-11-22T12:08:40.141529Z	   13 Query	SHOW SESSION VARIABLES LIKE 'lower_case_table_names'
+2017-11-22T12:08:40.142763Z	   13 Query	SELECT current_user()
+2017-11-22T12:08:40.142958Z	   13 Query	SET CHARACTER SET utf8
+2017-11-22T12:08:40.143145Z	   13 Query	SET NAMES utf8
+2017-11-22T12:08:40.143325Z	   13 Query	SET SQL_SAFE_UPDATES=1
+2017-11-22T12:08:40.143500Z	   13 Query	SELECT CONNECTION_ID()
+2017-11-22T12:08:40.143689Z	   13 Query	SHOW SESSION STATUS LIKE 'Ssl_cipher'
+```
+El Workbench carga varias consultas que necesita el programa para que funcione adecuadamente. 
